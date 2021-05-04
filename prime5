@@ -29,8 +29,7 @@ public class TestCustomException1 {
       try{  
       Scanner s = new Scanner(System.in);
 		System.out.print("Enter a number: ");
-		//int n = s.nextInt();
-		int n = -10;
+		int n = s.nextInt();
 		if (isPrime(n)) {
 		System.out.println(n + " is a prime number.");
 		} else {

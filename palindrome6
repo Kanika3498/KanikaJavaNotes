@@ -1,0 +1,56 @@
+import java.util.Scanner;
+
+import javax.swing.text.html.FormSubmitEvent;
+
+public class Increment {
+
+
+    public static boolean Plaindrome(int n) {
+          int r,sum=0,temp;
+
+          temp=n;    
+          while(n>0){    
+           r=n%10;  
+           sum=(sum*10)+r;    
+           n=n/10;    
+          }    
+          if(temp==sum)    
+              return true;
+          else    
+           return false; 
+
+        }  
+    public static int  greaterpalindrome(int k) {
+        while(!Plaindrome(k)) {
+
+             k++;
+
+         }
+        return k;
+    }
+    public static int  smallerpalindrome(int s) {
+        while(!Plaindrome(s)) {
+
+            s--;
+
+         }
+        return s;}
+
+    public static void main(String[] args) {
+         int value = 20;
+
+         int greater = greaterpalindrome(value+1);
+
+         int smaller = smallerpalindrome(value-1);
+
+         if (Math.abs(value-greater)==(value-smaller)) {
+                System.out.println(greater+" "+smaller);
+            }
+            else if (Math.abs(value-greater)>(value-smaller)) {
+                System.out.println(smaller);
+            }
+            else {
+                System.out.println(greater);
+            }
+
+        } } 

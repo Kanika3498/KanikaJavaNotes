@@ -1,6 +1,6 @@
 import java.util.*;
 import java.lang.*;
-
+import java.util.Scanner;
 //Geometric_shape interface
 interface Geometric_shape {
    void draw_shape();

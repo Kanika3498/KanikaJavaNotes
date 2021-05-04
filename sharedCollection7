@@ -1,0 +1,29 @@
+import java.util.*;  
+import java.lang.Math;
+
+public class Multi3 implements Runnable{  
+public static void main(String args[]){  
+Collection<Integer> syncCollection = Collections.synchronizedCollection(new ArrayList<>());
+    Runnable listOperations = () -> {
+		Random random = new Random();
+		int x = random.nextInt(10);
+        syncCollection.add(x);
+		Iterator<String> itr=syncCollection.iterator();  
+while(itr.hasNext()){  
+System.out.println(itr.next());  
+}  
+
+    };
+    
+    Thread thread1 = new Thread(listOperations);
+    Thread thread2 = new Thread(listOperations);
+    Thread thread3 = new Thread(listOperations);
+    thread1.start();
+    thread2.start();
+    thread3.start();
+    thread1.join();
+    thread2.join();
+    thread3.join();
+	
+} }  
+}  

@@ -1,0 +1,47 @@
+Excessive usage of static fields can potentially lead to a memory leak. In Java, static fields usually remain in memory as long as the application is running. Here’s an example:
+
+public class StaticFieldsMemoryLeakExample {
+	private static List<Integer> integers = new ArrayList<Integer>();
+
+	public void insertIntegers() {
+		for (int i = 0; i < 100000000; i++) {
+			integers.add(i);
+		}
+	}
+
+	public static void main(String[] args) {
+		new StaticFieldsMemoryLeakExample().insertIntegers();
+	}
+}
+
+Resources such as connections and streams utilize memory. If they are not closed, memory allocated to these resources is blocked and the GC is unable to free up this space. Here's an example:
+
+public void readFromURL() {
+	try {
+	    URL url = new URL("http://example.com");
+	    URLConnection urlConnection = url.openConnection();
+	    InputStream is = urlConnection.getInputStream();
+	    byte[] bytes = is.readAllBytes();
+	} catch (IOException ioe) {
+		ioe.printStackTrace();
+	}
+}
+
+Not writing proper overriding implementations for equals() and hashcode() methods when creating a new class can potentially lead to memory leaks in Java. Particularly the HashSet and HashMap classes use these methods for many operations, and it is best to carefully write correct implementations of these methods. Here's an example of a new class without equals() and hashcode() implementations:
+
+public class Foo {
+public int id;
+
+    	public Foo(int id) {
+        		this.id = id;
+   	}
+}
+
+public void populateMap() {
+	Map<Foo, Integer> map = new HashMap<Foo, Integer>();
+
+	for(int i = 0; i < 10000; i++) {
+        		map.put(new Foo(1), 1);
+    	}
+}
+

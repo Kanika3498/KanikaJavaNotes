@@ -1,44 +1,45 @@
-class Player{  
-String game;  
+import java.util.*;  
+import java.io.*;  
+
+class Player implements Comparable<Player>{  
+int game;  
 String name;  
 int age;  
-Player(String game,String name,int age){  
+Player(int game,String name,int age){  
 this.game=game;  
 this.name=name;  
 this.age=age;  
-}  
-}  
+} 
 
-import java.util.*;  
-class AgeComparator implements Comparator{  
-public int compare(Object o1,Object o2){  
-Player s1=(Player)o1;  
-Player s2=(Player)o2;  
-  
-if(s1.age==s2.age)  
-return 0;  
-else if(s1.age>s2.age)  
-return 1;  
-else  
-return -1;  
-}  
-}  
-
-import java.util.*;  
-class GameComparator implements Comparator{  
-public int compare(Object o1,Object o2){  
-Player s1=(Player)o1;  
-Player s2=(Player)o2;  
-  
-if (s1.game.compareTo(s2.game) == 0){
-	return s1.age.compareTo(s2.age);
+// Override the equals() method
+public boolean equals(Player p) {
+        return name.equals(p.name)
 }
-return s1.game.compareTo(s2.game);
-}  
-}  
+name.equals(p.name)
 
-import java.util.*;  
-import java.io.*;  
+    }
+	
+// Override the compareTo() method
+    public int compareTo(Player p)
+    {
+		if (game > p.game) {
+            return 1;
+        }
+        else if (game < p.game) {
+            return -1;
+        }
+        else {
+		        if (age > p.age) {
+            return 1;
+        }
+        else if (age < p.age) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    } 
+}  
   
 class Simple{  
 public static void main(String args[]){  
@@ -49,40 +50,20 @@ String name2 = "Vijay";
 String name3 = "Ajay";
 String name4 = "Jai";
 
-Player p1 = new Player("Football",name1,23);
-Player p2 = new Player("Hockey",name2,27);
-Player p3 = new Player("Cricket",name3,24);
-Player p4 = new Player("Hockey",name4,21);
+Player p1 = new Player(3,name1,23);
+Player p2 = new Player(2,name2,27);
+Player p3 = new Player(1,name3,24);
+Player p4 = new Player(2,name4,21);
 
 al.add(p1);
-if(!p1.name.equals(p2.name)){
-	al.add(p2); 
-}	
-if(!p1.name.equals(p3.name) && !p2.name.equals(p3.name)){
-	al.add(p3); 
-}	
-if(!p1.name.equals(p4.name) && !p2.name.equals(p4.name) && !p3.name.equals(p4.name)){
-	al.add(p4); 
-}
+al.add(p2); 
+al.add(p3); 
+al.add(p4); 
 
-System.out.println("Sorting by Game");  
-  
-Collections.sort(al,new GameComparator());  
 Iterator itr=al.iterator();  
 while(itr.hasNext()){  
 Player st=(Player)itr.next();  
 System.out.println(st.game+" "+st.name+" "+st.age);  
 }  
-  
-System.out.println("Sorting by age");  
-  
-Collections.sort(al,new AgeComparator());  
-Iterator itr2=al.iterator();  
-while(itr2.hasNext()){  
-Player st=(Player)itr2.next();  
-System.out.println(st.game+" "+st.name+" "+st.age);  
-}  
-  
-  
 }  
 }  

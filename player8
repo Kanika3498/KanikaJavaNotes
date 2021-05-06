@@ -43,8 +43,8 @@ import java.io.*;
 class Simple{  
 public static void main(String args[]){  
   
-ArrayList al=new ArrayList();
-String name1="Ajay";
+TreeSet<Player> al = new TreeSet<Player>();
+String name1 = "Ajay";
 String name2 = "Vijay";
 String name3 = "Ajay";
 String name4 = "Jai";
